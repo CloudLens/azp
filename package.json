@@ -1,0 +1,21 @@
+{
+  "name": "azp",
+  "version": "1.0.0",
+  "description": "Azure Provisioning Utility",
+  "main": "azp.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/cloudlens/azp"
+  },
+  "keywords": [
+    "azure"
+  ],
+  "author": "Mark Rendle",
+  "license": "MIT",
+  "dependencies": {
+    "toml": "^2.3.0"
+  }
+}

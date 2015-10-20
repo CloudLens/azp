@@ -1,0 +1,28 @@
+title = "Azure Example"
+
+location = "centralus"
+resource_group = "clresearch"
+
+[network.vnet.CL_CentralUS_VNet]
+address_prefixes = ["192.168.0.0/16"]
+
+[network.vnet.CL_CentralUS_VNet.subnet.Main]
+address_prefix = "192.168.1.0/24"
+
+[network.vnet.CL_CentralUS_VNet.subnet.Internal]
+address_prefix = "192.168.2.0/24"
+
+[vm.cl_ubuntu_dev]
+os_type = "Linux"
+image_urn = "canonical:ubuntuserver:15.04:15.04.201510150"
+admin_username = "cluser"
+admin_password = "S3cr3t_Squ1rr3l"
+ssh_publickey_file = "~/.ssh/id_rsa.pub"
+public_ip_name = "cl-ubuntu-dev"
+public_ip_domain_name = "cl-ubuntu-dev"
+storage_account_name = "clresearch"
+enable_boot_diagnostics = true
+boot_diagnostics_storage_uri = "https://clresearch.blob.core.windows.net/"
+nic_name = "cl-cus-nic"
+vnet_name = "CL_CentralUS_VNet"
+vnet_subnet_name = "Main"
