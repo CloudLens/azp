@@ -8,22 +8,12 @@ const libs = require('./lib/load');
 let raw = fs.readFileSync('azp.toml', 'utf8');
 let config = toml.parse(raw);
 
+let globals = config.globals;
+
 for (let lib of libs) {
     if (config[lib.key]) {
-        for (let command of lib.commands(config[lib.key], config)) {
+        for (let command of lib.commands(config[lib.key], globals)) {
             console.log(command);
         }
     }
 }
-//
-//if (config.vnet) {
-//    for (let command of require('./lib/vnet').commands(config)) {
-//        console.log(command);
-//    }
-//}
-//
-//if (config.vm) {
-//    for (let command of require('./lib/vm').commands(config)) {
-//        console.log(command);
-//    }
-//}

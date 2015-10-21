@@ -1,5 +1,7 @@
 title = "Azure Example"
 
+[globals]
+subscription = "7813d581-60f4-4d7d-845b-f7c1a63e741f"
 location = "centralus"
 resource_group = "clresearch"
 
@@ -9,20 +11,44 @@ address_prefixes = ["192.168.0.0/16"]
 [network.vnet.CL_CentralUS_VNet.subnet.Main]
 address_prefix = "192.168.1.0/24"
 
-[network.vnet.CL_CentralUS_VNet.subnet.Internal]
-address_prefix = "192.168.2.0/24"
-
 [vm.cl_ubuntu_dev]
 os_type = "Linux"
 image_urn = "canonical:ubuntuserver:15.04:15.04.201510150"
-admin_username = "cluser"
+admin_username = "mark"
 admin_password = "S3cr3t_Squ1rr3l"
 ssh_publickey_file = "~/.ssh/id_rsa.pub"
+# generate_ssh_keys = true
+vm_size = "Standard_A1"
+# custom_data = "cloud-config.yaml"
+tags = "tag1=foo;tag2=bar;someothertag;etc=42"
+
+# NETWORK STUFF
+
+# public_ip_id = "/subscriptions/{{subscription}}/resourceGroups/{{resource_group}}/providers/Microsoft.Network/publicIPAddresses/<public-ip-name>"
 public_ip_name = "cl-ubuntu-dev"
 public_ip_domain_name = "cl-ubuntu-dev"
+# public_ip_allocation_method = "Dynamic"
+# public_ip_idletimeout = <minutes>
+
+nic_name = "cl-cus-nic"
+# nic_names = ["<nic-name1>","<nic-name2>"]
+# nic_id = "<nic-id>"
+# nic_ids = ["<nic-id1>", "<nic-id2>"]
+
+vnet_name = "CL_CentralUS_VNet"
+# vnet_address_prefix = "192.168.0.0/16"
+vnet_subnet_name = "Main"
+# vnet_subnet_address_prefix = "192.168.1.0/24"
+# subnet_id = "/subscriptions/{{subscription}}/resourceGroups/{{resource_group}}/providers/Microsoft.Network/virtualNetworks/<vnet-name>/subnets/<subnet-name>"
+# availset_name = "<availset-name>"
+
+# DISK STUFF
 storage_account_name = "clresearch"
+storage_account_container_name = "disks"
+# os_disk_vhd = "clresearch-os.vhd"
+# data_disk_vhd = "clresearch-data.vhd"
+# data_disk_size = 50
+# data_disk_existing = true
+
 enable_boot_diagnostics = true
 boot_diagnostics_storage_uri = "https://clresearch.blob.core.windows.net/"
-nic_name = "cl-cus-nic"
-vnet_name = "CL_CentralUS_VNet"
-vnet_subnet_name = "Main"
